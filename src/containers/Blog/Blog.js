@@ -5,7 +5,8 @@ import FullPost from '../../components/FullPost/FullPost';
 import NewPost from '../../components/NewPost/NewPost';
 import './Blog.css';
 
-import axios from 'axios';
+//import axios from 'axios';
+import axios from '../../Instance';
 
 class Blog extends Component {
     state = {
@@ -17,7 +18,7 @@ class Blog extends Component {
         this.setState({selectedPostId: id});
     }
     componentDidMount(){
-        axios.get('http://jsonplaceholder.typicode.com/posts')
+        axios.get('/posts')
         .then(response => { 
             const posts = response.data.slice(0,4);
             const udpatedPosts = posts.map(post => {
@@ -33,7 +34,7 @@ class Blog extends Component {
          });
     }
     render () {
-        console.log(this.state.posts);
+        //console.log(this.state.posts);
         let posts = <p style={{textAlign: 'center'}}> Something went wrong! </p>;
         if(!this.state.error){
             posts = this.state.posts.map(
