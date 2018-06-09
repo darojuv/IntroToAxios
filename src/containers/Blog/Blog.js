@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Posts from '../Posts/Posts';
 import './Blog.css';
-import {Route, NavLink, Switch } from  'react-router-dom';
+import {Route, NavLink, Switch, Redirect } from  'react-router-dom';
 import NewPost from '../NewPost/NewPost';
 //import FullPost from '../FullPost/FullPost';
 
@@ -18,14 +18,13 @@ class Blog extends Component {
                             <li>
                                 {/* <a href="/">Home</a> */}
                                 <NavLink 
-                                to="/post"
-                                exact
-                                activeClassName="my-active"
-                                activeStyle={{
-                                    color: '#fa923f',
-                                    textDecoration:'Underline'
-                                }}
-                                >Posts</NavLink>
+                                    to="/post"
+                                    exact
+                                    activeClassName="my-active"
+                                    activeStyle={{
+                                        color: '#fa923f',
+                                        textDecoration:'Underline'
+                                    }} >Posts</NavLink>
                                 </li>
                                 <li>
                                 {/* <a href="/new-post">New Post</a> */}
@@ -43,6 +42,8 @@ class Blog extends Component {
                 <Switch>
                    <Route path="/new-post"  component={NewPost} />
                    <Route path="/post"  component={Posts} />
+                   <Redirect from="/" to="/post" />
+                   {/* <Route path="/"  component={Posts} /> */}
                 </Switch>
             </div>
         );
